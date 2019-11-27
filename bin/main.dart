@@ -31,7 +31,7 @@ int stackCalc(String argument) {
       if (stack.length >= 2) {
         var last = stack.removeLast();
         var secondLast = stack.removeLast();
-        stack.add(last + secondLast);
+        mathsOperations(last, secondLast).add();
       }
     } else if (walkthrough[i] == 'DUP') {
       if (stack.isNotEmpty) {
@@ -45,19 +45,19 @@ int stackCalc(String argument) {
       if (stack.length >= 2) {
         var last = stack.removeLast();
         var secondLast = stack.removeLast();
-        stack.add(last - secondLast);
+        mathsOperations(last, secondLast).sub();
       }
     } else if (walkthrough[i] == '*') {
       if (stack.length >= 2) {
         var last = stack.removeLast();
         var secondLast = stack.removeLast();
-        stack.add(last * secondLast);
+        mathsOperations(last, secondLast).mul();
       }
     } else if (walkthrough[i] == '/') {
       if (stack.length >= 2) {
         var last = stack.removeLast();
         var secondLast = stack.removeLast();
-        stack.add(last ~/ secondLast);
+        mathsOperations(last, secondLast).div();
       }
     } else {
       (stack.add(int.parse(walkthrough[i])));
@@ -68,6 +68,16 @@ int stackCalc(String argument) {
   return stack.last;
 }
 
+class mathsOperations{
+  int x;
+  int y;
+  mathsOperations(this.x,this.y);
+
+  int add()=> this.x+this.y;
+  int sub()=> this.x-this.y;
+  int div()=> this.x~/this.y;
+  int mul()=> this.x*this.y;
+}
 main() {
   print(stackCalc("3 *"));
 }
